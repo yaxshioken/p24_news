@@ -1,0 +1,86 @@
+c{% extends 'base.html' %}
+{% load static %}
+
+<!-- BEGIN wrapper -->
+{% block content %}
+    <div class="wrapper">
+        <!-- BEGIN header -->
+        <div id="header">
+            <h1><a href="#">NewsTheme</a></h1>
+            <div class="ad468x60"><a href="#"><img src="{% static 'images/ad468x60.gif' %}" alt="Advertisement"/></a></div>
+        </div>
+        <!-- END header -->
+
+        <!-- BEGIN body -->
+        <div id="body">
+            {% include 'article/sidebar.html' %}
+            <!-- BEGIN content -->
+            <div id="content">
+                <!-- Include Sidebar -->
+
+                <!-- begin recent post -->
+                <div class="recent post">
+                    <h2 class="title">Recent News</h2>
+                    <h2><a href="{% url 'article:article-detail' slug=article.slug %}">{{ article.title }}</a></h2>
+                    
+                    <p>{{ article.body|safe }}</p>
+
+                    <!-- Display comments -->
+                    {% if comments %}
+                        <h3>Comments:</h3>
+                        <ul>
+                            {% for comment in comments %}
+                                <li>
+                                    <p><strong>Owner:</strong> {{ comment.owner.username }}</p>
+                                    <p>{{ comment.body|safe }}</p>
+                                </li>
+                            {% empty %}
+                                <li>No comments yet.</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No comments available.</p>
+                    {% endif %}
+                </div>
+                <!-- end recent post -->
+
+                <!-- begin articles table -->
+                <div class="posts">
+                    <h2>More Articles</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Excerpt</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for arct in articles %}
+                                <tr>
+                                    <td>{{ arct.published_at }}</td>
+                                    <td><a href="{% url 'article:article-detail' slug=arct.slug %}">{{ arct.title|truncatewords:6 }}</a></td>
+                                    <td>{{ arct.body|safe|truncatewords:20 }}</td>
+                                    <td>
+                                        <a href="{% url 'article:article-detail' slug=arct.slug %}">READ MORE</a>
+                                        <a href="{% url 'article:article-detail' slug=arct.slug %}">{{ arct.comments.count }} Comments</a>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="4">No articles available.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end articles table -->
+
+            </div>
+            <!-- END content -->
+        </div>
+        <!-- END body -->
+        <div class="break"></div>
+    </div>
+{% endblock %}

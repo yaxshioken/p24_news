@@ -1,5 +1,8 @@
 from django.db.models import TextChoices
-class RoleChoices(TextChoices):
-    PUBLISHER='pb','Publisher',
-    WRITER='wr','WRITER',
-    MEMBER='mb','Member',
+
+
+class AccountRole(TextChoices):
+    CUSTOMER = "customer", "Customer"
+    PUBLISHER = "publisher", "Publisher"
+    WRITER = "writer", "Writer"
+    MEMBER = "member", "Member"

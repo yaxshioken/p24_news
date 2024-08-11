@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsTheme</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" href="{% static 'ie.css' %}">
+    <![endif]-->
+</head>
+<body>
+<!-- BEGIN navigation -->
+<div id="navigation">
+    <div class="wrapper">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Demo Page</a></li>
+            <li><a href="#">Contact Page</a></li>
+        </ul>
+        <form action="#" method="get">
+            <input type="text" name="q" id="s" placeholder="Search..."/>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+{% block content %}{% endblock %}
+
+<!-- BEGIN footer -->
+<div id="footer">
+    <div class="wrapper">
+        <p class="l">P24_NEWS &copy; 2024 - <a href="https://t.me/Baratov_777">My Telegram</a> &middot; All Rights Reserved</p>
+        <p class="r">Template by: <a href="http://www.wpthemedesigner.com/">WordPress Designer</a> | Get More <a href="#">Free CSS Templates</a></p>
+    </div>
+</div>
+<!-- END footer -->
+</body>
+</html>

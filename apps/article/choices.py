@@ -1,5 +1,7 @@
 from django.db.models import TextChoices
-class Choices(TextChoices):
-    DRAFT="df","DRAFT"
-    PUBLISHED="pb","PUBLISHED"
-    
+
+
+class Status(TextChoices):
+    DRAFT = 'DRAFT', 'Draft'
+    PUBLISHED = 'PUBLISHED', 'Published'
+    ARCHIVED = 'ARCHIVED', 'Archived'

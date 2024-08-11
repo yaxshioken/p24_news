@@ -40,11 +40,15 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-THIRD_PARTY_APPS = [
-    'phonenumber_field',
-]
+THIRDY_PARTY_APPS = [
+    "phonenumber_field",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    'ckeditor',
+    'ckeditor_uploader',
 
-INSTALLED_APPS = DJANGO_APPS + CUSTOM_APPS + THIRD_PARTY_APPS
+]
+INSTALLED_APPS = DJANGO_APPS + CUSTOM_APPS + THIRDY_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.article.context_processors.category_list'
             ],
         },
     },
@@ -122,13 +127,32 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static/'
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
-STATICFILES_DIRS= [
+
+STATICFILES_DIRS = [
     BASE_DIR / 'staticfiles'
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+CKEDITOR_CONFIGS = {
+    'default':
+        {
+            'toolbar': 'full',
+            'width': 'auto',
+            'extraPlugins': ','.join([
+                'codesnippet',
+            ]),
+        },
+}
+CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
